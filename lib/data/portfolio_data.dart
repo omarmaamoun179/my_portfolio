@@ -7,6 +7,7 @@ class Contact {
   static const email = 'omarmaamoun6@gmail.com';
   static const phone = '+201064780620';
   static const phoneDisplay = '+20 106 478 0620';
+  static const whatsapp = 'https://wa.me/201064780620';
   static const github = 'https://github.com/omarmaamoun179';
   static const linkedin = 'https://www.linkedin.com/in/omar-maamoun-05b085238';
   static const location = 'Cairo, Egypt 🇪🇬';

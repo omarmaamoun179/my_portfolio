@@ -136,7 +136,12 @@ class HeroSection extends StatelessWidget {
                       PortfolioButton(
                         label: 'Download CV',
                         icon: Icons.file_download_outlined,
-                        onTap: () => openUrl(Contact.cvUrl),
+                        onTap: () => openDoc(Contact.cvUrl),
+                      ),
+                      PortfolioButton(
+                        label: 'WhatsApp',
+                        icon: FontAwesomeIcons.whatsapp,
+                        onTap: () => openUrl(Contact.whatsapp),
                       ),
                       PortfolioButton(
                         label: 'GitHub',

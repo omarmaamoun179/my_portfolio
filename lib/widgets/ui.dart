@@ -44,6 +44,14 @@ Future<void> openUrl(String url) async {
   }
 }
 
+/// Open a document (e.g. the bundled CV PDF) in a new browser tab. Relative
+/// paths are resolved against the current page so a file served from the web
+/// root — like `Omar-Maamoun-CV.pdf` — opens and is shown to the visitor.
+Future<void> openDoc(String url) async {
+  final uri = Uri.base.resolve(url);
+  await launchUrl(uri, webOnlyWindowName: '_blank');
+}
+
 /// Two-tone gradient text used for the highlighted name / headline words.
 class GradientText extends StatelessWidget {
   final String text;
