@@ -31,6 +31,21 @@
 
   <title>Omar Maamoun — Flutter Developer</title>
 
+  <!-- Google Analytics (GA4) — gtag.js. The privacy policy page describes
+       what this collects: /privacy -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BKK8MB3JV0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    // anonymize_ip + manual page_view: the Flutter SPA never reloads, so we
+    // emit page_view events from Dart on route changes instead of on load.
+    gtag('config', 'G-BKK8MB3JV0', {
+      anonymize_ip: true,
+      send_page_view: false
+    });
+  </script>
+
   <style>
     /* Loading splash matching the dark terminal aesthetic */
     body { background-color: #0a0e14; margin: 0; }

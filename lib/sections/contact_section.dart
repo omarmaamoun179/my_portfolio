@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../data/portfolio_data.dart';
+import '../services/analytics.dart';
 import '../theme/app_theme.dart';
 import '../widgets/hover.dart';
 import '../widgets/reveal.dart';
@@ -74,12 +75,19 @@ class ContactSection extends StatelessWidget {
                       label: 'Email me',
                       icon: Icons.mail_outline,
                       primary: true,
-                      onTap: () => openUrl('mailto:${Contact.email}'),
+                      onTap: () {
+                        Analytics.logEvent('contact_click',
+                            {'method': 'email'});
+                        openUrl('mailto:${Contact.email}');
+                      },
                     ),
                     PortfolioButton(
                       label: 'Download CV',
                       icon: Icons.file_download_outlined,
-                      onTap: () => openDoc(Contact.cvUrl),
+                      onTap: () {
+                        Analytics.logEvent('cv_download');
+                        openDoc(Contact.cvUrl);
+                      },
                     ),
                     PortfolioButton(
                       label: 'WhatsApp',

@@ -9,6 +9,7 @@ import 'sections/hero_section.dart';
 import 'sections/skills_section.dart';
 import 'sections/stats_section.dart';
 import 'sections/work_section.dart';
+import 'services/analytics.dart';
 import 'theme/app_theme.dart';
 import 'widgets/nav_bar.dart';
 import 'widgets/scroll_in_view.dart';
@@ -65,6 +66,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    // SPA "landing" page-view — the browser load fires no GA hit (the snippet
+    // sets send_page_view:false), so we record the home view here.
+    Analytics.logPageView(path: '/', title: 'Home — Omar Maamoun');
     _scroll.addListener(() {
       final scrolled = _scroll.offset > 12;
       if (scrolled != _navScrolled) setState(() => _navScrolled = scrolled);
