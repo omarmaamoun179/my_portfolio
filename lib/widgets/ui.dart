@@ -307,12 +307,18 @@ class StoreBadge extends StatelessWidget {
   final String? url;
   final bool disabled;
 
+  /// Overrides the default "open [url]" tap behaviour. Callers use this to run
+  /// side effects (e.g. analytics) alongside opening the link; when null the
+  /// badge just opens [url].
+  final VoidCallback? onTap;
+
   const StoreBadge({
     super.key,
     required this.label,
     required this.icon,
     this.url,
     this.disabled = false,
+    this.onTap,
   });
 
   @override
@@ -326,7 +332,7 @@ class StoreBadge extends StatelessWidget {
     }
     return Hover(
       builder: (context, hovering) => GestureDetector(
-        onTap: url == null ? null : () => openUrl(url!),
+        onTap: onTap ?? (url == null ? null : () => openUrl(url!)),
         child: _badge(t, hovering: hovering),
       ),
     );

@@ -76,8 +76,7 @@ class ContactSection extends StatelessWidget {
                       icon: Icons.mail_outline,
                       primary: true,
                       onTap: () {
-                        Analytics.logEvent('contact_click',
-                            {'method': 'email'});
+                        Analytics.contactClick('email');
                         openUrl('mailto:${Contact.email}');
                       },
                     ),
@@ -92,17 +91,26 @@ class ContactSection extends StatelessWidget {
                     PortfolioButton(
                       label: 'WhatsApp',
                       icon: FontAwesomeIcons.whatsapp,
-                      onTap: () => openUrl(Contact.whatsapp),
+                      onTap: () {
+                        Analytics.contactClick('whatsapp');
+                        openUrl(Contact.whatsapp);
+                      },
                     ),
                     PortfolioButton(
                       label: 'GitHub',
                       icon: FontAwesomeIcons.github,
-                      onTap: () => openUrl(Contact.github),
+                      onTap: () {
+                        Analytics.contactClick('github');
+                        openUrl(Contact.github);
+                      },
                     ),
                     PortfolioButton(
                       label: 'LinkedIn',
                       icon: FontAwesomeIcons.linkedinIn,
-                      onTap: () => openUrl(Contact.linkedin),
+                      onTap: () {
+                        Analytics.contactClick('linkedin');
+                        openUrl(Contact.linkedin);
+                      },
                     ),
                   ],
                 ),

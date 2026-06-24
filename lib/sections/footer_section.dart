@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../data/portfolio_data.dart';
+import '../services/analytics.dart';
 import '../theme/app_theme.dart';
 import '../widgets/hover.dart';
 import '../widgets/ui.dart';
@@ -53,10 +54,17 @@ class FooterSection extends StatelessWidget {
                     _FLink(label: 'About', onTap: () => onNavTap('about')),
                     _FLink(label: 'Work', onTap: () => onNavTap('work')),
                     _FLink(
-                        label: 'GitHub', onTap: () => openUrl(Contact.github)),
+                        label: 'GitHub',
+                        onTap: () {
+                          Analytics.contactClick('github');
+                          openUrl(Contact.github);
+                        }),
                     _FLink(
                         label: 'Email',
-                        onTap: () => openUrl('mailto:${Contact.email}')),
+                        onTap: () {
+                          Analytics.contactClick('email');
+                          openUrl('mailto:${Contact.email}');
+                        }),
                     _FLink(
                       label: 'Privacy',
                       onTap: () => Navigator.of(context).push(

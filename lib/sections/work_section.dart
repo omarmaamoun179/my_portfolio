@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../data/portfolio_data.dart';
+import '../services/analytics.dart';
 import '../theme/app_theme.dart';
 import '../widgets/hover.dart';
 import '../widgets/phone_mock.dart';
@@ -205,7 +206,10 @@ class _WorkCard extends StatelessWidget {
     return Hover(
       cursor: SystemMouseCursors.click,
       builder: (context, hovering) => GestureDetector(
-        onTap: () => showProjectDialog(context, project),
+        onTap: () {
+          Analytics.projectOpen(project.name);
+          showProjectDialog(context, project);
+        },
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 280),
           width: 300,
@@ -278,6 +282,16 @@ class _WorkCard extends StatelessWidget {
                                 icon: link.icon,
                                 url: link.url,
                                 disabled: link.disabled,
+                                onTap: link.url == null
+                                    ? null
+                                    : () {
+                                        Analytics.storeLinkClick(
+                                          app: project.name,
+                                          store: link.label,
+                                          source: 'card',
+                                        );
+                                        openUrl(link.url!);
+                                      },
                               ),
                           ],
                         ),

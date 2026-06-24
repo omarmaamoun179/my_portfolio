@@ -27,4 +27,32 @@ class Analytics {
   static void logEvent(String name, [Map<String, Object?> params = const {}]) {
     platform.gaEvent(name, params);
   }
+
+  // ---- Typed helpers ----
+  // Centralised so event names and parameter keys stay identical wherever they
+  // fire (a card and the detail dialog both emit `store_link_click`, etc.).
+
+  /// A visitor opened a project's detail dialog.
+  static void projectOpen(String app) {
+    logEvent('project_open', {'app': app});
+  }
+
+  /// A visitor tapped a store badge (Google Play / App Store).
+  /// [source] is where it was tapped — e.g. `card` or `dialog`.
+  static void storeLinkClick({
+    required String app,
+    required String store,
+    required String source,
+  }) {
+    logEvent('store_link_click', {
+      'app': app,
+      'store': store,
+      'source': source,
+    });
+  }
+
+  /// A visitor tapped a contact channel (`email`, `whatsapp`, `github`, …).
+  static void contactClick(String method) {
+    logEvent('contact_click', {'method': method});
+  }
 }

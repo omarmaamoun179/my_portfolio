@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../data/portfolio_data.dart';
+import '../services/analytics.dart';
 import '../theme/app_theme.dart';
 import 'ui.dart';
 
@@ -411,6 +412,16 @@ class _Details extends StatelessWidget {
                     icon: link.icon,
                     url: link.url,
                     disabled: link.disabled,
+                    onTap: link.url == null
+                        ? null
+                        : () {
+                            Analytics.storeLinkClick(
+                              app: project.name,
+                              store: link.label,
+                              source: 'dialog',
+                            );
+                            openUrl(link.url!);
+                          },
                   ),
               ],
             ),
